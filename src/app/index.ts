@@ -28,16 +28,18 @@ const  initServer=async()=>{
 
 
       await GraphqlServer.start();
-    app.use("/graphql",expressMiddleware(GraphqlServer))
+    app.use("/graphql",expressMiddleware(GraphqlServer,{
+        context: async({req,res})=>{
+            return {
+                user: req.headers.authorization ?JWTService.decodeToken(req.headers.authorization.split('Bearer ')[1]):undefined
+            }
+            }
+    }))
     return app
 }
 export default initServer
 /*
 {
-        context: async({req,res})=>{
-        return {
-            user: req.headers.authorization ?JWTService.decodeToken(req.headers.authorization.split('Bearer ')[1]):undefined
-        }
-        }
+        
     }))
         */

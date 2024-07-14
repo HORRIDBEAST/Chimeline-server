@@ -44,15 +44,17 @@ const queries = {
         const usertoken = jwt_1.default.generateTokenForUser(userInDB);
         return usertoken;
     }),
+    getCurrentUser: (parent, args, ctx) => __awaiter(void 0, void 0, void 0, function* () {
+        var _a;
+        const id = (_a = ctx.user) === null || _a === void 0 ? void 0 : _a.id;
+        // console.log(ctx)
+        if (!id)
+            return null;
+        const user = yield prisma.user.findUnique({ where: { id } });
+        return user;
+    })
     /*
-    getCurrentUser: async(parent:any ,args:any , ctx:GraphqlContext)=>{
-        const id=ctx.user?.id
-        console.log(ctx)
-
-        if(!id) return null
-        const user=await prisma.user.findUnique({where : {id }})
-        return user
-    }
+   
         */
 };
 exports.resolvers = { queries };

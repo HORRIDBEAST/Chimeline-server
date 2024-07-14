@@ -52,15 +52,16 @@ const queries={
         return usertoken
 
     },
-    /*
     getCurrentUser: async(parent:any ,args:any , ctx:GraphqlContext)=>{
         const id=ctx.user?.id
-        console.log(ctx)
+        // console.log(ctx)
 
         if(!id) return null
         const user=await prisma.user.findUnique({where : {id }})
         return user
     }
+    /*
+   
         */
 }
 export const resolvers={queries};

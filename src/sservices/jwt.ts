@@ -19,7 +19,6 @@ class JWTService {
     const token = jwt.sign(payload, JWT_SECRET);
     return token ;
   }
-  /*
   public static decodeToken(token:string){
     try{
       return jwt.verify(token,JWT_SECRET) as JWTUser
@@ -28,6 +27,8 @@ catch{
   return null;
 }
   }
+  /*
+  
   */
 }
 
